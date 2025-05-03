@@ -1,7 +1,7 @@
-#Author: lnotspotl, Ekaterina Mozhegova (illusoryTwin)
+#Author: lnotspotl, Ekaterina Mozhegova (illusoryTwin), Yaroslav Kivaev (catdog905)
 
 import numpy as np
-import tf
+import tf_transformations as tf
 
 from . state_command import State, Command, BehaviorState
 from . rest_controller import RestController

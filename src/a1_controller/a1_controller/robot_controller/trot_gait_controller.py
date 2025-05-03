@@ -1,11 +1,11 @@
 #Author: mike4192 https://github.com/mike4192/spotMicro
-#Modified by: lnotspotl, Ekaterina Mozhegova (illusoryTwin)
+#Modified by: lnotspotl, Ekaterina Mozhegova (illusoryTwin), Yaroslav Kivaev (catdog905)
 
 import numpy as np
 import rclpy
 from . gait_controller import GaitController
 from . PID_controller import PID_controller
-from controller_utilities.transformations import rotxyz,rotz
+from a1_controller.controller_utilities.transformations import rotxyz
 
 
 class TrotGaitController(GaitController):

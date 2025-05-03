@@ -1,8 +1,9 @@
-#Author: lnotspotl, Ekaterina Mozhegova (illusoryTwin)
+#Author: lnotspotl, Ekaterina Mozhegova (illusoryTwin), Yaroslav Kivaev (catdog905)
 
 import numpy as np
 import rclpy
-from controller_utilities.transformations import rotxyz
+from a1_controller.controller_utilities.transformations import rotxyz
+
 from . PID_controller import PID_controller
 
 class RestController(object):

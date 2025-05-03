@@ -1,9 +1,9 @@
 # Author: mike4192 https://github.com/mike4192/spotMicro
-# Modified by: lnotspotl, Ekaterina Mozhegova (illusoryTwin)
+# Modified by: lnotspotl, Ekaterina Mozhegova (illusoryTwin), Yaroslav Kivaev (catdog905)
 
 import numpy as np
 from . gait_controller import GaitController
-from controller_utilities.transformations import rotz
+from a1_controller.controller_utilities.transformations import rotxyz
 
 class CrawlGaitController(GaitController):
     def __init__(self, default_stance, stance_time, swing_time, time_step):

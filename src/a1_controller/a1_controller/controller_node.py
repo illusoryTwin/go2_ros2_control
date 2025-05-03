@@ -1,16 +1,11 @@
+#Modified by: lnotspotl, Ekaterina Mozhegova (illusoryTwin), Yaroslav Kivaev (catdog905)
+
 import rclpy 
 from rclpy.node import Node
-
+from std_msgs.msg import Float64
 from sensor_msgs.msg import Joy, Imu
-# from robot_controller import RobotController
 from a1_controller.inverse_kinematics import robot_IK
 from a1_controller.robot_controller import RobotController
-
-
-# # from .robot_controller import RobotController
-# from .inverse_kinematics import robot_IK
-
-from std_msgs.msg import Float64
 
 USE_IMU = True
 RATE = 60
@@ -39,14 +34,14 @@ class RobotControllerNode(Node):
                   "/a1_gazebo/RL_thigh_joint/command",
                   "/a1_gazebo/RL_calf_joint/command"]
 
-        self.publishers = []
+        self.controller_publishers = []
         for topic in command_topics:
             pub = self.create_publisher(Float64, topic, 10)
-            self.publishers.append(pub)
+            self.controller_publishers.append(pub)
         
         if USE_IMU:
-            self.create_subscription(Imu, "a1_imu/base_link_orientation", self.a1_robot.imu_orientation)
-        self.create_subscription(Joy, "a1_joy/joy_ramped", self.a1_robot.joystick_command)
+            self.create_subscription(Imu, "a1_imu/base_link_orientation", self.a1_robot.imu_orientation, 10)
+        self.create_subscription(Joy, "a1_joy/joy_ramped", self.a1_robot.joystick_command, 10)
 
         self.get_logger().info("Robot controller node initialized")
 
@@ -70,7 +65,7 @@ class RobotControllerNode(Node):
             for i in range(len(joint_angles)):
                 msg = Float64
                 msg.data = joint_angles[i]
-                self.publishers[i].publish(msg)
+                self.controller_publishers[i].publish(msg)
         except:
             self.get_logger().warn(f"Inverse kinematics failed: {e}")
 

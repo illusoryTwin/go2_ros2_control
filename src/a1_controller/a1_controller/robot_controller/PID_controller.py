@@ -1,4 +1,4 @@
-# Author: lnotspotl, Ekaterina Mozhegova (illusoryTwin)
+# Author: lnotspotl, Ekaterina Mozhegova (illusoryTwin), Yaroslav Kivaev (catdog905)
 
 
 # TO DO: fix time

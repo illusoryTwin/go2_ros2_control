@@ -1,5 +1,5 @@
 #Author: mike4192 https://github.com/mike4192/spotMicro
-#Modified by: lnotspotl, Ekaterina Mozhegova (illusoryTwin)
+#Modified by: lnotspotl, Ekaterina Mozhegova (illusoryTwin), Yaroslav Kivaev (catdog905)
 
 import numpy as np
 
