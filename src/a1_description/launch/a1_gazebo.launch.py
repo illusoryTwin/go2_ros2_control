@@ -25,6 +25,9 @@ def generate_launch_description():
         executable='robot_state_publisher',
         output='both',
         parameters=[params],
+        remappings=[
+            ('/joint_states', '/a1_gazebo/joint_states')
+        ]
     )
 
     # Joint State Publisher
@@ -41,6 +44,20 @@ def generate_launch_description():
         PythonLaunchDescriptionSource([get_package_share_directory('gazebo_ros') + '/launch/gazebo.launch.py']),
         launch_arguments={'world': get_package_share_directory('a1_description') + '/world/normal.world'}.items()
     )
+
+    Node(
+        package='controller_manager',
+        executable='spawner',
+        arguments=[
+            'FR_hip_joint', 'FR_thigh_joint', 'FR_calf_joint',
+            'FL_hip_joint', 'FL_thigh_joint', 'FL_calf_joint',
+            'RR_hip_joint', 'RR_thigh_joint', 'RR_calf_joint',
+            'RL_hip_joint', 'RL_thigh_joint', 'RL_calf_joint',
+            '--controller-manager-timeout', '60'
+        ],
+        namespace='a1_gazebo',
+        output='screen'
+    ),
 
     # Spawn Entity
     spawn_entity = Node(
