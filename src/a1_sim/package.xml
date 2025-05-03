@@ -7,6 +7,10 @@
   <maintainer email="mozhegova04@gmail.com">ekaterina</maintainer>
   <license>TODO: License declaration</license>
 
+  <exec_depend>xacro</exec_depend>
+  <!-- <exec_depend>gazebo_ros</exec_depend> -->
+  <exec_depend>a1_description</exec_depend>
+
   <test_depend>ament_copyright</test_depend>
   <test_depend>ament_flake8</test_depend>
   <test_depend>ament_pep257</test_depend>
