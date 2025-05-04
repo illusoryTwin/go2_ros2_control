@@ -39,7 +39,7 @@ class RobotControllerNode(Node):
             pub = self.create_publisher(Float64, topic, 10)
             self.controller_publishers.append(pub)
         
-        self.FR_controller_publisher = self.create_publisher(Float64, '/a1_gazebo/RL_calf_joint/command', 10)
+        self.RL_calf_controller_publisher = self.create_publisher(Float64, '/a1_gazebo/RL_calf_joint/command', 10)
 
         if USE_IMU:
             self.create_subscription(Imu, "a1_imu/base_link_orientation", self.a1_robot.imu_orientation, 10)
@@ -71,7 +71,8 @@ class RobotControllerNode(Node):
                 msg.data = joint_angles[i]
                 self.get_logger().info(f"msg.data: {msg.data}")
                 self.controller_publishers[i].publish(msg)
-                self.FR_controller_publisher.publish(msg)
+                self.RL_calf_controller_publisher.publish(msg)
+                
         except Exception as e:
             self.get_logger().warn(f"Inverse kinematics failed: {e}")
 
