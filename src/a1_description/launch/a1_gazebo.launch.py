@@ -16,6 +16,9 @@ def generate_launch_description():
     a1_description_path = os.path.join(
         get_package_share_directory('a1_description'))
     xacro_file = os.path.join(a1_description_path, 'xacro', 'robot.xacro')
+    controller_yaml = os.path.join(a1_description_path, 'config', 'controllers.yaml')
+    
+
     params = {'robot_description': Command(['xacro ', xacro_file]), 'use_sim_time': True}
     # params = {'robot_description': Command(['xacro ', xacro_file, ' use_gazebo:=true DEBUG:=false']), 'use_sim_time': True}
 
@@ -40,12 +43,21 @@ def generate_launch_description():
         }]
     )
 
+    # # Load controllers with ros2_control_node
+    # ros2_control_node = Node(
+    #     package='controller_manager',
+    #     executable='ros2_control_node',
+    #     parameters=[params, controller_yaml],
+    #     output='screen',
+    #     namespace='a1_gazebo'
+    # )
+
     gazebo = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([get_package_share_directory('gazebo_ros') + '/launch/gazebo.launch.py']),
         launch_arguments={'world': get_package_share_directory('a1_description') + '/world/normal.world'}.items()
     )
 
-    Node(
+    controller_spawner = Node(
         package='controller_manager',
         executable='spawner',
         arguments=[
@@ -56,8 +68,9 @@ def generate_launch_description():
             '--controller-manager-timeout', '60'
         ],
         namespace='a1_gazebo',
-        output='screen'
-    ),
+        output='screen',
+        parameters=[controller_yaml]  # Loading controller YAML here
+    )
 
     # Spawn Entity
     spawn_entity = Node(
@@ -81,7 +94,9 @@ def generate_launch_description():
     ld.add_action(node_robot_state_publisher)
     ld.add_action(node_joint_state_publisher)
     ld.add_action(gazebo)
+    # ld.add_action(ros2_control_node)
     ld.add_action(spawn_entity)
+    ld.add_action(controller_spawner)
 
     return ld
 
