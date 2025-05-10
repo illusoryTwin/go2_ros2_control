@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<robot name="a1_description" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
     <!-- Constants for robot dimensions -->
     <xacro:property name="PI" value="3.1415926535897931"/>
@@ -34,8 +34,8 @@
     <xacro:property name="hip_offset" value="0.065"/>
 
     <!-- joint limits -->
-    <xacro:property name="damping" value="1.0"/>
-    <xacro:property name="friction" value="0"/>
+    <xacro:property name="damping" value="0.1"/>
+    <xacro:property name="friction" value="0.2"/>
     <xacro:property name="hip_max" value="46"/>
     <xacro:property name="hip_min" value="-46"/>
     <xacro:property name="hip_velocity_max" value="21"/>

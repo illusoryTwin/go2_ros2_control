@@ -1,0 +1,17 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/home/ekaterina/Workspace/projects/a1_sim_py/install/a1_joystick/lib/python3.10/site-packages",
+        "/home/ekaterina/Workspace/projects/a1_sim_py/install/a1_description/lib/python3.10/site-packages",
+        "/home/ekaterina/Workspace/projects/a1_sim_py/install/a1_controller/lib/python3.10/site-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "/home/ekaterina/Workspace/projects/a1_sim_py/install/a1_joystick/lib/python3.10/site-packages",
+        "/home/ekaterina/Workspace/projects/a1_sim_py/install/a1_description/lib/python3.10/site-packages",
+        "/home/ekaterina/Workspace/projects/a1_sim_py/install/a1_controller/lib/python3.10/site-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ],
+    "ros.distro": "humble"
+}
