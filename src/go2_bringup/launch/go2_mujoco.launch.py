@@ -71,9 +71,13 @@ def generate_launch_description():
     unitree_guide_controller = Node(
         package="controller_manager",
         executable="spawner",
-        arguments=["rl_quadruped_controller", "--controller-manager", "/controller_manager"],
-        # arguments=["leg_pd_controller", "--controller-manager", "/controller_manager"],
-        # arguments=["unitree_guide_controller", "--controller-manager", "/controller_manager"],
+        arguments=["unitree_guide_controller", "--controller-manager", "/controller_manager"],
+    )
+
+    
+    keyboard_controller = ExecuteProcess(
+        cmd=['gnome-terminal', '--', 'ros2', 'run', 'keyboard_input', 'keyboard_input'],
+        output='screen'
     )
 
     # Event handlers to chain spawners
@@ -91,12 +95,19 @@ def generate_launch_description():
         )
     )
 
+    # # Add the rosbag recording for the specified topics
+    # rosbag_record = ExecuteProcess(
+    #     cmd=['ros2', 'bag', 'record', '-o', '/home/ekaterina/Workspace/data/bagfile2', '/dynamic_joint_states', '/imu_sensor_broadcaster/imu'],
+    #     output='screen'
+    # )
 
     return LaunchDescription([
         robot_state_publisher,
         controller_manager,
         joint_state_publisher,
         imu_sensor_after_joint_state,
-        guide_controller_after_imu
+        guide_controller_after_imu,
+        keyboard_controller,
+        # rosbag_record,
     ])
 
