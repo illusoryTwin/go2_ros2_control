@@ -28,6 +28,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
+            'camera_reader = go2_bringup.camera_reader:main'
         ],
     },
 )

@@ -74,11 +74,18 @@ def generate_launch_description():
         arguments=["unitree_guide_controller", "--controller-manager", "/controller_manager"],
     )
 
+    static_tf = Node(
+        package="tf2_ros",
+        executable="static_transform_publisher",
+        name="camera_static_tf",
+        arguments=["0", "0", "0", "0", "0", "0", "trunk", "front_camera"]
+    )
     
     keyboard_controller = ExecuteProcess(
         cmd=['gnome-terminal', '--', 'ros2', 'run', 'keyboard_input', 'keyboard_input'],
         output='screen'
     )
+
 
     # Event handlers to chain spawners
     imu_sensor_after_joint_state = RegisterEventHandler(
@@ -95,16 +102,17 @@ def generate_launch_description():
         )
     )
 
-    # # Add the rosbag recording for the specified topics
-    # rosbag_record = ExecuteProcess(
-    #     cmd=['ros2', 'bag', 'record', '-o', '/home/ekaterina/Workspace/data/bagfile2', '/dynamic_joint_states', '/imu_sensor_broadcaster/imu'],
-    #     output='screen'
-    # )
+    # Add the rosbag recording for the specified topics
+    rosbag_record = ExecuteProcess(
+        cmd=['ros2', 'bag', 'record', '-o', '/data/bagfile2', '/dynamic_joint_states', '/imu_sensor_broadcaster/imu'],
+        output='screen'
+    )
 
     return LaunchDescription([
         robot_state_publisher,
         controller_manager,
         joint_state_publisher,
+        static_tf,
         imu_sensor_after_joint_state,
         guide_controller_after_imu,
         keyboard_controller,
