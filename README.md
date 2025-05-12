@@ -5,6 +5,19 @@ A module containing ROS2 packages for launching Go2 in simulation.
 ## Key packages 
 
 - `go2_bringup`
+    
+    Contains the main launch file `main.launch.py`
+    One can pass an argument while launching this file, like:
+
+    ```bash
+    make run CTRL=unitree_guide
+    ```
+
+    or 
+
+    ```bash
+    make run CTRL=rl
+    ``` 
 
 - `go2_description`
 
